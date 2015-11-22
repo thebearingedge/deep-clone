@@ -1,2 +1,2 @@
 # deep-clone
-Stand-alone cloning of Arrays and Objects
+Stand-alone deep cloning of Arrays and Objects
