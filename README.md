@@ -7,14 +7,18 @@ Stand-alone deep cloning of Arrays and Objects
 $ npm install --save deep-clone
 ```
 
-Recursively copy nested objects and arrays.
+Recursively clone nested objects and arrays containing primitive data or objects and arrays containing primitive data.
 
 ```javascript
 import deepClone from 'deep-clone'
 
 const obj = { /* ... */ }
-const cloneObj = deepClone(obj)
+const cloneOfObj = deepClone(obj)
 
 const arr = [ /* ... */ ]
-const cloneArr = deepClone(arr)
+const cloneOfArr = deepClone(arr)
 ```
+
+Other options:
+- [clone-deep](https://github.com/jonschlinkert/clone-deep)
+- [safe-clone-deep](https://github.com/tracker1/safe-clone-deep)

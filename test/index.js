@@ -1,6 +1,6 @@
 
 import { expect } from 'chai'
-import deepClone from '../deep-clone'
+import deepClone from '../src/index.js'
 
 describe('deepClone', () => {
 
