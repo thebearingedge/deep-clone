@@ -1,14 +1,14 @@
 {
   "name": "deep-clone",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Stand-alone deep cloning of Arrays and Objects",
-  "main": "lib/index.js",
+  "main": "index.js",
   "scripts": {
     "test": "mocha --compilers js:babel-core/register",
     "dev": "mocha -w --compilers js:babel-core/register",
-    "precompile": "npm test",
-    "compile": "babel src --out-dir lib",
-    "prepublish": "npm run compile"
+    "pretransform": "npm test",
+    "transform": "babel src --out-dir lib",
+    "prepublish": "npm run transform"
   },
   "repository": {
     "type": "git",
