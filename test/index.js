@@ -68,6 +68,16 @@ describe('deepClone(obj)', () => {
     expect(clone[1]).not.to.equal(arr[1])
   })
 
+  it('clones circular references', () => {
+    const foo = { bar: 'baz' }
+    foo.qux = [foo]
+    const clone = deepClone(foo)
+    expect(clone).to.deep.equal(foo)
+    expect(clone.qux).not.to.equal(foo.qux)
+    expect(clone.qux).to.deep.equal(foo.qux)
+    expect(clone.qux[0]).to.equal(clone)
+  })
+
   it('formats keys', () => {
     const obj = { foo_bar: 'baz' }
     const clone = deepClone(obj, camelCase)

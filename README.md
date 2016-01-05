@@ -1,5 +1,5 @@
 # deep-clone
-Deep cloning of Arrays and Objects
+Deep cloning of Arrays and plain Objects.
 
 [![Build Status](https://travis-ci.org/thebearingedge/deep-clone.svg?branch=master)](https://travis-ci.org/thebearingedge/deep-clone)
 
@@ -13,7 +13,6 @@ deepClone(obj, [fn keyFormatter])
 Recursively clone nested objects and arrays containing primitive data or objects and arrays containing primitive data.
 
 ```javascript
-import assert from 'assert'
 import deepClone from 'deep-clone'
 
 const foo = { bar: 'baz' }
@@ -32,20 +31,18 @@ assert.notEqual(arr, arrClone) // true
 Deep clone an Object or Array and format the keys.
 
 ```javascript
-import assert from 'assert'
 import camelCase from 'camelcase'
 import deepClone from 'deep-clone'
 
 const foo = { bar_baz: 'qux' }
 const fooClone = deepClone(foo, camelCase)
 
-assert.deepEqual(fooClone, { barBaz: 'qux' }) // true
+assert.deepEqual(fooClone, { barBaz: 'qux' })
 ```
 
-Or.
+Or...
 
 ```javascript
-import assert from 'assert'
 import camelCase from 'camelcase'
 import { formatKeys } from 'deep-clone'
 
@@ -53,7 +50,19 @@ const camelKeys = formatKeys(camelCase)
 const arr = [{ foo_bar: 'baz' }, { qux_quux: 'corge' }]
 const arrClone = camelKeys(arr)
 
-assert.deepEqual(arrClone, [{ fooBar: 'baz' }, { quxQuux: 'corge' }]) // true
+assert.deepEqual(arrClone, [{ fooBar: 'baz' }, { quxQuux: 'corge' }])
+```
+
+Version 2 handles circular references using a Map.
+
+```javascript
+const foo = { bar: 'baz' }
+foo.qux = [foo]
+const clone = deepClone(foo)
+assert.deepEqual(clone, foo)
+assert.notEqual(clone.qux, foo.qux)
+assert.deepEqual(clone.qux, foo.qux)
+assert.equal(clone.qux[0], clone)
 ```
 
 Other options:
