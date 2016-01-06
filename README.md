@@ -2,6 +2,7 @@
 Deep cloning of Arrays and plain Objects.
 
 [![Build Status](https://travis-ci.org/thebearingedge/deep-clone.svg?branch=master)](https://travis-ci.org/thebearingedge/deep-clone)
+[![Coverage Status](https://coveralls.io/repos/thebearingedge/deep-clone/badge.svg?branch=master&service=github)](https://coveralls.io/github/thebearingedge/deep-clone?branch=master)
 
 ```bash
 $ npm i -S deep-clone
