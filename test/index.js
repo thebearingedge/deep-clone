@@ -3,7 +3,7 @@ import { expect } from 'chai'
 import { camelCase, snakeCase } from 'lodash'
 import deepClone, { formatKeys } from '../src/index.js'
 
-describe('deepClone(obj, [keyFormatter])', () => {
+describe('deepClone(obj, [stringFormatter])', () => {
 
   it('clones flat objects', () => {
     const obj = { foo: 'bar', baz: 'qux' }

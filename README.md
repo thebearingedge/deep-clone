@@ -8,10 +8,10 @@ Deep cloning of Arrays and plain Objects.
 $ npm i -S deep-clone
 ```
 
-deepClone(obj, [fn keyFormatter])
+deepClone(obj, [stringFormatter])
 ---
 
-Recursively clone nested objects and arrays containing primitive data or objects and arrays containing primitive data.
+Recursively clone nested objects and arrays containing primitive data or nested objects and arrays containing primitive data.
 
 ```javascript
 import deepClone from 'deep-clone'
@@ -49,20 +49,21 @@ import { formatKeys } from 'deep-clone'
 
 const camelKeys = formatKeys(camelCase)
 const arr = [{ foo_bar: 'baz' }, { qux_quux: 'corge' }]
-const arrClone = camelKeys(arr)
+const camelClone = camelKeys(arr)
 
-assert.deepEqual(arrClone, [{ fooBar: 'baz' }, { quxQuux: 'corge' }])
+assert.deepEqual(camelClone, [{ fooBar: 'baz' }, { quxQuux: 'corge' }])
 ```
 
 Version 2 handles circular references using a Map.
 
 ```javascript
 const foo = { bar: 'baz' }
+
 foo.qux = [foo]
+
 const clone = deepClone(foo)
+
 assert.deepEqual(clone, foo)
-assert.notEqual(clone.qux, foo.qux)
-assert.deepEqual(clone.qux, foo.qux)
 assert.equal(clone.qux[0], clone)
 ```
 
