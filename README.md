@@ -18,14 +18,14 @@ import deepClone from 'deep-clone'
 const foo = { bar: 'baz' }
 const fooClone = deepClone(foo)
 
-assert.deepEqual(foo, fooClone) // true
-assert.notEqual(foo, fooClone) // true
+assert.deepEqual(foo, fooClone)
+assert.notEqual(foo, fooClone)
 
 const arr = [{ foo: 'bar'}, { baz: 'qux'}]
 const arrClone = deepClone(arr)
 
-assert.deepEqual(arr, arrClone) // true
-assert.notEqual(arr, arrClone) // true
+assert.deepEqual(arr, arrClone)
+assert.notEqual(arr, arrClone)
 ```
 
 Deep clone an Object or Array and format the keys.

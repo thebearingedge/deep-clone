@@ -1,7 +1,6 @@
 
 import { expect } from 'chai'
-import camelCase from 'lodash.camelcase'
-import snakeCase from 'lodash.snakecase'
+import { camelCase, snakeCase } from 'lodash'
 import deepClone, { formatKeys } from '../src/index.js'
 
 describe('deepClone(obj)', () => {
@@ -58,7 +57,7 @@ describe('deepClone(obj)', () => {
   })
 
   it('clones arrays of objects', () => {
-    const arr = [{ foo: 'bar' }, { baz: 'qux' }]
+    const arr = [{ foo: 1 }, { baz: 2 }]
     const clone = deepClone(arr)
     expect(clone).to.deep.equal(arr)
     expect(clone).not.to.equal(arr)
@@ -84,7 +83,7 @@ describe('deepClone(obj)', () => {
     expect(clone).to.deep.equal({ fooBar: 'baz' })
   })
 
-  it('stores a key format function', () => {
+  it('returns a key format function', () => {
     const snakeKeys = formatKeys(snakeCase)
     const obj = { fooBar: 'baz' }
     const clone = snakeKeys(obj)
@@ -92,4 +91,3 @@ describe('deepClone(obj)', () => {
   })
 
 })
-
