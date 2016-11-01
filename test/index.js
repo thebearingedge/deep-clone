@@ -45,7 +45,7 @@ describe('deepClone(obj, [stringFormatter])', () => {
   it('clones objects containing arrays', () => {
     const obj = {
       foo: ['bar'],
-      bar: ['baz']
+      bar: [null]
     }
     const clone = deepClone(obj)
     expect(clone).to.deep.equal(obj)
