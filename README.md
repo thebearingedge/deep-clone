@@ -11,7 +11,7 @@ $ npm i -S deep-clone
 deepClone(obj, [stringFormatter])
 ---
 
-Recursively clone nested objects and arrays containing primitive data or nested objects and arrays containing primitive data.
+Recursively clone nested objects and arrays containing primitive data or nested objects and arrays containing primitive data. Clones `Date` objects too...
 
 ```javascript
 import deepClone from 'deep-clone'

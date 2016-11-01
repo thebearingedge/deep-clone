@@ -77,6 +77,13 @@ describe('deepClone(obj, [stringFormatter])', () => {
     expect(clone.qux[0]).to.equal(clone)
   })
 
+  it('clones Dates', () => {
+    const foo = new Date()
+    const clone = deepClone(foo)
+    expect(clone.toString()).to.equal(foo.toString())
+    expect(clone).not.to.equal(foo)
+  })
+
   it('formats keys', () => {
     const obj = { foo_bar: 'baz' }
     const clone = deepClone(obj, camelCase)

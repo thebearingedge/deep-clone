@@ -1,6 +1,6 @@
 {
   "name": "deep-clone",
-  "version": "2.0.2",
+  "version": "3.0.0",
   "description": "Deep cloning of Arrays and plain Objects.",
   "main": "index.js",
   "scripts": {
