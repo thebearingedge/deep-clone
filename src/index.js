@@ -1,6 +1,5 @@
 
 export default function deepClone(obj, format, refs = new Map()) {
-  if (!obj) return obj
   const cloned = refs.get(obj)
   if (cloned) return cloned
   if (Array.isArray(obj)) {
@@ -12,7 +11,7 @@ export default function deepClone(obj, format, refs = new Map()) {
     return clone
   }
   if (obj instanceof Date) return new Date(obj.valueOf())
-  if (!(Object.getPrototypeOf(obj) === Object.prototype)) return obj
+  if (!(obj instanceof Object)) return obj
   const clone = {}
   refs.set(obj, clone)
   const keys = Object.keys(obj)
