@@ -12,6 +12,7 @@ export default function deepClone(obj, format, refs = new Map()) {
   }
   if (obj instanceof Date) return new Date(obj.valueOf())
   if (!(obj instanceof Object)) return obj
+  if (obj instanceof RegExp) return RegExp(obj.source, obj.flags);
   const clone = {}
   refs.set(obj, clone)
   const keys = Object.keys(obj)
