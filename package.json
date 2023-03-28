@@ -1,14 +1,15 @@
 {
+  "type": "module",
   "name": "deep-clone",
-  "version": "3.0.3",
+  "version": "4.0.0",
   "description": "Deep cloning of Arrays and plain Objects.",
   "main": "index.js",
   "scripts": {
     "lint": "eslint src/**/*.js test/**/*.js",
     "istanbul": "babel-node node_modules/.bin/babel-istanbul cover _mocha --",
-    "test": "mocha --compilers js:babel-register",
+    "test": "mocha",
     "cover": "npm run -s istanbul -- --compilers js:babel-register",
-    "test:watch": "npm -s t -- -w",
+    "tdd": "npm -s t -- -w -p",
     "compile": "babel src --out-dir lib",
     "ship": "npm run -s lint && npm -s t && npm run -s compile && npm publish"
   },
@@ -26,16 +27,14 @@
   },
   "homepage": "https://github.com/thebearingedge/deep-clone#readme",
   "devDependencies": {
-    "babel-cli": "6.18.0",
-    "babel-core": "6.18.2",
-    "babel-eslint": "7.1.1",
-    "babel-istanbul": "0.11.0",
-    "babel-preset-es2015": "6.18.0",
-    "babel-register": "6.18.0",
-    "chai": "3.5.0",
-    "coveralls": "2.11.15",
+    "@esbuild-kit/esm-loader": "^2.5.5",
+    "@types/chai": "^4.3.4",
+    "@types/lodash": "^4.14.192",
+    "@types/mocha": "^10.0.1",
+    "chai": "^4.3.7",
     "eslint": "3.10.2",
-    "lodash": "4.17.2",
-    "mocha": "3.1.2"
+    "lodash": "^4.17.21",
+    "mocha": "^10.2.0",
+    "typescript": "^5.0.2"
   }
 }

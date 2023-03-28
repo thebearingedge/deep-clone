@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "node",
+    "module": "es2015",
+    "outDir": "dist/",
+    "strict": true,
+    "target": "es2015"
+  },
+  "include": [
+    "src/"
+  ]
+}
