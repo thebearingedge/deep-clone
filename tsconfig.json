@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "node",
+    "module": "esnext",
+    "outDir": "dist/",
+    "strict": true,
+    "target": "es2015"
+  },
+  "include": [
+    "lib/",
+    "src/",
+    "rollup.config.ts"
+  ]
+}

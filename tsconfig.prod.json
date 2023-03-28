@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "baseUrl": "./src"
+  },
+  "exclude": [
+    "src/**/*.test.ts",
+    "rollup.config.ts"
+  ]
+}

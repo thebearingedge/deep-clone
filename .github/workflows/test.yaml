@@ -1,0 +1,37 @@
+name: test
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    name: Run Tests
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [16.x, 18.x]
+        include:
+          - node-version: 16.x
+            env:
+              COVERAGE: 1
+    steps:
+      - name: Setup
+        uses: actions/checkout@v3
+
+      - name: Run on Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - run: npm ci
+
+      - run: npm run cover
+
+      - name: Publish Coverage Report
+        if: ${{ matrix.env.COVERAGE }}
+        uses: codecov/codecov-action@v3

@@ -1,0 +1,15 @@
+{
+  "extension": [
+    "ts"
+  ],
+  "spec": [
+    "src/**/*.test.ts"
+  ],
+  "node-option": [
+    "no-warnings",
+    "loader=@esbuild-kit/esm-loader"
+  ],
+  "watch-files": [
+    "src/**/*.ts"
+  ]
+}

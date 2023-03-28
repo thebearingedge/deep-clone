@@ -1,0 +1,60 @@
+name: upgrade npm packages
+
+on:
+  schedule:
+    - cron: "0 0 * * 0"
+  workflow_dispatch:
+
+jobs:
+  upgrade:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    name: upgrade and pull request
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+
+      - name: install current dependencies
+        run: |
+          docker build \
+            --tag ${{ github.repository }}:builder \
+            .
+
+      - name: upgrade dependencies
+        run: |
+          docker run \
+            --rm \
+            --mount type=bind,src=$PWD/package.json,dst=/home/node/deep-clone/package.json \
+            --mount type=bind,src=$PWD/package-lock.json,dst=/home/node/deep-clone/package-lock.json \
+            ${{ github.repository }}:builder \
+            npm upgrade --save && npm clean-install && npm run build
+
+      - name: get package diff
+        id: get-package-diff
+        run: git diff --quiet --exit-code package*
+        continue-on-error: true
+
+      - name: open pull request
+        id: push-upgrade-branch
+        if: steps.get-package-diff.outcome == 'failure'
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@users.noreply.github.com"
+          git checkout -b upgrade-npm-packages-run-${{ github.run_number }}
+          git add package*
+          git commit -m 'chore(deps): upgrade npm packages'
+          git push origin upgrade-npm-packages-run-${{ github.run_number }}
+
+          curl \
+            --location \
+            --request POST \
+            --header "Content-Type: application/json" \
+            --header "Authorization: Bearer ${{ github.token }}" \
+            --url https://api.github.com/repos/${{ github.repository }}/pulls \
+            --data-raw '{
+              "base": "main",
+              "head": "upgrade-npm-packages-run-${{ github.run_number }}",
+              "title": "package upgrade cron job (automated)"
+            }'

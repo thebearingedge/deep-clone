@@ -1,7 +1,7 @@
-
 import { expect } from 'chai'
-import { camelCase, snakeCase } from 'lodash'
-import deepClone, { formatKeys } from '../src/index.js'
+import camelCase from 'lodash/camelCase'
+import snakeCase from 'lodash/snakeCase'
+import deepClone, { formatKeys } from './deep-clone'
 
 describe('deepClone(obj, [stringFormatter])', () => {
 
@@ -68,7 +68,8 @@ describe('deepClone(obj, [stringFormatter])', () => {
   })
 
   it('clones circular references', () => {
-    const foo = { bar: 'baz' }
+    type Foo = { bar: string, qux: Foo[] }
+    const foo: Foo = { bar: 'baz', qux: [] }
     foo.qux = [foo]
     const clone = deepClone(foo)
     expect(clone).to.deep.equal(foo)
@@ -86,7 +87,7 @@ describe('deepClone(obj, [stringFormatter])', () => {
 
   it('formats keys', () => {
     const obj = { foo_bar: 'baz' }
-    const clone = deepClone(obj, camelCase)
+    const clone = deepClone<typeof obj, { fooBar: string }>(obj, camelCase)
     expect(clone).to.deep.equal({ fooBar: 'baz' })
   })
 
@@ -95,7 +96,7 @@ describe('deepClone(obj, [stringFormatter])', () => {
     it('returns a key format function', () => {
       const snakeKeys = formatKeys(snakeCase)
       const obj = { fooBar: 'baz' }
-      const clone = snakeKeys(obj)
+      const clone = snakeKeys<typeof obj, { foo_bar: string }>(obj)
       expect(clone).to.deep.equal({ foo_bar: 'baz' })
     })
 
