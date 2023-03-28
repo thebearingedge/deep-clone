@@ -1,4 +1,8 @@
 # deep-clone
+
+[![Github Actions Test Status](https://github.com/thebearingedge/deep-clone/workflows/Test/badge.svg?branch=main)](https://github.com/thebearingedge/deep-clone/actions?query=workflow%3Atest+branch%3Amain)
+[![codecov](https://codecov.io/gh/thebearingedge/deep-clone/branch/main/graph/badge.svg?token=PDH8IGTF1A)](https://codecov.io/gh/thebearingedge/deep-clone)
+
 Deep cloning of data.
 
 ```bash
