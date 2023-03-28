@@ -1,17 +1,14 @@
 # deep-clone
-Deep cloning of Arrays and plain Objects.
-
-[![Build Status](https://travis-ci.org/thebearingedge/deep-clone.svg?branch=master)](https://travis-ci.org/thebearingedge/deep-clone)
-[![Coverage Status](https://coveralls.io/repos/thebearingedge/deep-clone/badge.svg?branch=master&service=github)](https://coveralls.io/github/thebearingedge/deep-clone?branch=master)
+Deep cloning of data.
 
 ```bash
 $ npm i -S deep-clone
 ```
 
-deepClone(obj, [stringFormatter])
+`deepClone(obj, [stringFormatter])`
 ---
 
-Recursively clone nested objects and arrays containing primitive data or nested objects and arrays containing primitive data. Clones `Date` objects too...
+Recursively clone nested objects and arrays containing primitive data or nested objects and arrays containing primitive data. Clones `Date` objects too.
 
 ```javascript
 import deepClone from 'deep-clone'
@@ -54,7 +51,7 @@ const camelClone = camelKeys(arr)
 assert.deepEqual(camelClone, [{ fooBar: 'baz' }, { quxQuux: 'corge' }])
 ```
 
-Version 2 handles circular references using a Map.
+Circular references are handled using a Map.
 
 ```javascript
 const foo = { bar: 'baz' }

@@ -1,19 +1,34 @@
 {
   "root": true,
-  "parser": "babel-eslint",
-  "env": {
-    "node": true,
-    "es6": true
+  "ignorePatterns": [
+    "dist/",
+    "coverage/"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json"
   },
-  "extends": "eslint:recommended",
-  "overrides": [
-    {
-      "files": [
-        "src/**/*.test.ts"
-      ],
-      "env": {
-        "mocha": true
+  "plugins": [
+    "@typescript-eslint"
+  ],
+  "extends": [
+    "standard-with-typescript"
+  ],
+  "rules": {
+    "no-console": [
+      "error"
+    ],
+    "padded-blocks": "off",
+    "@typescript-eslint/consistent-type-definitions": [
+      "error",
+      "type"
+    ],
+    "@typescript-eslint/space-before-function-paren": [
+      "error",
+      {
+        "anonymous": "always",
+        "named": "never"
       }
-    }
-  ]
+    ]
+  }
 }
