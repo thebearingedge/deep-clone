@@ -1,8 +1,7 @@
-
 import { expect } from 'chai'
 import camelCase from 'lodash/camelCase'
 import snakeCase from 'lodash/snakeCase'
-import deepClone, { formatKeys } from './index.js'
+import deepClone, { formatKeys } from './deep-clone'
 
 describe('deepClone(obj, [stringFormatter])', () => {
 

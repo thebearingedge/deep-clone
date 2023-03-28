@@ -3,18 +3,27 @@
   "name": "deep-clone",
   "version": "4.0.0",
   "description": "Deep cloning of Arrays and plain Objects.",
-  "main": "dist/index.js",
+  "main": "./dist/cjs/deep-clone.js",
+  "module": "./dist/esm/deep-clone.js",
+  "exports": {
+    ".": {
+      "import": "./dist/esm/deep-clone.js",
+      "require": "./dist/cjs/deep-clone.js"
+    }
+  },
+  "types": "./dist/deep-clone.d.ts",
   "files": [
     "dist/"
   ],
   "scripts": {
     "lint": "eslint .",
-    "postlint": "tsc --noEmit",
+    "prelint": "tsc --noEmit",
     "test": "mocha",
     "pretest": "tsc --noEmit",
-    "cover": "c8 --reporter text --reporter html --reporter lcov mocha",
-    "tdd": "mocha --watch --parallel",
-    "build": "tsc --project tsconfig.prod.json",
+    "cover": "c8 -r text -r html -r lcov mocha",
+    "tdd": "mocha -w -p",
+    "prebuild": "rimraf dist/",
+    "build": "rollup -c --configPlugin typescript && tsc -p tsconfig.prod.json",
     "prepack": "npm run build"
   },
   "repository": {
@@ -24,7 +33,7 @@
   "keywords": [
     "clone"
   ],
-  "author": "",
+  "author": "Tim Davis <contact@timdav.is>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/thebearingedge/deep-clone/issues"
@@ -42,6 +51,7 @@
     "eslint-config-standard-with-typescript": "^34.0.1",
     "lodash": "^4.17.21",
     "mocha": "^10.2.0",
+    "rimraf": "^4.4.1",
     "rollup": "^3.20.2",
     "typescript": "^5.0.2"
   }

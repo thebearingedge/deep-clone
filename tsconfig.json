@@ -5,9 +5,10 @@
     "module": "esnext",
     "outDir": "dist/",
     "strict": true,
-    "target": "esnext"
+    "target": "es2015"
   },
   "include": [
+    "lib/",
     "src/",
     "rollup.config.ts"
   ]

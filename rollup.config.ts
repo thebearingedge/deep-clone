@@ -1,21 +1,22 @@
 import ts from '@rollup/plugin-typescript'
 
 export default {
-  input: 'src/html-inspect.ts',
+  input: 'src/deep-clone.ts',
   output: [
     {
-      file: 'dist/cjs/html-inspect.js',
+      file: 'dist/cjs/deep-clone.js',
       format: 'cjs',
-      exports: 'auto'
+      exports: 'named'
     },
     {
-      file: 'dist/esm/html-inspect.js',
+      file: 'dist/esm/deep-clone.js',
       format: 'esm'
     },
     {
-      file: 'dist/umd/html-inspect.js',
+      file: 'dist/umd/deep-clone.js',
       format: 'umd',
-      name: 'htmlInspect'
+      name: 'deepClone',
+      exports: 'named'
     }
   ],
   plugins: [
