@@ -1,6 +1,6 @@
 FROM docker.io/node:18-alpine
 
-USER node
+RUN mkdir -p /home/node/deep-clone
 
 WORKDIR /home/node/deep-clone
 
