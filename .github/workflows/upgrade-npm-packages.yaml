@@ -29,7 +29,7 @@ jobs:
             --mount type=bind,src=$PWD/package.json,dst=/home/node/deep-clone/package.json \
             --mount type=bind,src=$PWD/package-lock.json,dst=/home/node/deep-clone/package-lock.json \
             ${{ github.repository }}:builder \
-            npm upgrade --save && npm clean-install && npm run build
+            npm upgrade --save && npm ci && npm test && npm run build
 
       - name: get package diff
         id: get-package-diff
