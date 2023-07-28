@@ -1,16 +1,16 @@
-type Data =
+export type CloneableData =
   | number
   | string
   | boolean
   | null
   | undefined
   | Date
-  | Data[]
-  | { [key: string]: Data }
+  | CloneableData[]
+  | { [key: string]: CloneableData }
 
-type FormatKey = ((key: string) => string)
+export type FormatKey = ((key: string) => string)
 
-export default function deepClone<I extends Data, O extends Data = I>(
+export default function deepClone<I extends CloneableData, O extends CloneableData = I>(
   value: I,
   formatKey?: FormatKey,
   refs: Map<I, O> = new Map<I, O>()
@@ -18,7 +18,7 @@ export default function deepClone<I extends Data, O extends Data = I>(
   const ref = refs.get(value)
   if (typeof ref !== 'undefined') return ref
   if (Array.isArray(value)) {
-    const clone: Data[] = []
+    const clone: CloneableData[] = []
     refs.set(value, clone as O)
     for (let i = 0; i < value.length; i++) {
       clone[i] = deepClone(value[i], formatKey, refs)
@@ -27,7 +27,7 @@ export default function deepClone<I extends Data, O extends Data = I>(
   }
   if (value instanceof Date) return new Date(value.valueOf()) as O
   if (!(value instanceof Object)) return value as unknown as O
-  const clone: Record<string, Data> = {}
+  const clone: Record<string, CloneableData> = {}
   refs.set(value, clone as O)
   const keys = Object.keys(value)
   for (let i = 0; i < keys.length; i++) {
@@ -38,7 +38,7 @@ export default function deepClone<I extends Data, O extends Data = I>(
 }
 
 export function formatKeys(format: FormatKey) {
-  return <I extends Data, O extends Data = I>(value: I) => deepClone<I, O>(value, format)
+  return <I extends CloneableData, O extends CloneableData = I>(value: I) => deepClone<I, O>(value, format)
 }
 
 deepClone.formatKeys = formatKeys
